@@ -15,56 +15,56 @@ void monty_swap(stack_t **stack, unsigned int line_number);
  */
 void monty_push(stack_t **stack, unsigned int line_number)
 {
-    stack_t *tmp, *new;
-    int i;
+	stack_t *tmp, *new;
+	int i;
 
 
-    new = malloc(sizeof(stack_t));
-    if (new == NULL)
-    {
-        set_op_tok_err(malloc_err());
-        return;
-    }
+	new = malloc(sizeof(stack_t));
+	if (new == NULL)
+	{
+		set_op_tok_err(malloc_err());
+		return;
+	}
 
 
-    if (op_toks[1] == NULL)
-    {
-        set_op_tok_err(no_int_err(line_number));
-        return;
-    }
+	if (op_toks[1] == NULL)
+	{
+		set_op_tok_err(no_int_err(line_number));
+		return;
+	}
 
 
-    for (i = 0; op_toks[1][i]; i++)
-    {
-        if (op_toks[1][i] == '-' && i == 0)
-            continue;
-        if (op_toks[1][i] < '0' || op_toks[1][i] > '9')
-        {
-            set_op_tok_err(no_int_err(line_number));
-            return;
-        }
-    }
-    new->n = atoi(op_toks[1]);
+	for (i = 0; op_toks[1][i]; i++)
+	{
+		if (op_toks[1][i] == '-' && i == 0)
+			continue;
+		if (op_toks[1][i] < '0' || op_toks[1][i] > '9')
+		{
+			set_op_tok_err(no_int_err(line_number));
+			return;
+		}
+	}
+	new->n = atoi(op_toks[1]);
 
 
-    if (check_mode(*stack) == STACK) /* STACK mode insert at front */
-    {
-        tmp = (*stack)->next;
-        new->prev = *stack;
-        new->next = tmp;
-        if (tmp)
-            tmp->prev = new;
-        (*stack)->next = new;
-    }
-    else /* QUEUE mode insert at end */
-    {
-        tmp = *stack;
-        while (tmp->next)
-            tmp = tmp->next;
-        new->prev = tmp;
-        new->next = NULL;
-        tmp->next = new;
-    }
+	if (check_mode(*stack) == STACK) /* STACK mode insert at front */
+	{
+		tmp = (*stack)->next;
+		new->prev = *stack;
+		new->next = tmp;
+		if (tmp)
+			tmp->prev = new;
+		(*stack)->next = new;
+	}
+	else /* QUEUE mode insert at end */
+	{
+		tmp = *stack;
+		while (tmp->next)
+			tmp = tmp->next;
+		new->prev = tmp;
+		new->next = NULL;
+		tmp->next = new;
+	}
 }
 
 
@@ -75,15 +75,15 @@ void monty_push(stack_t **stack, unsigned int line_number)
  */
 void monty_pall(stack_t **stack, unsigned int line_number)
 {
-    stack_t *tmp = (*stack)->next;
+	stack_t *tmp = (*stack)->next;
 
 
-    while (tmp)
-    {
-        printf("%d\n", tmp->n);
-        tmp = tmp->next;
-    }
-    (void)line_number;
+	while (tmp)
+	{
+		printf("%d\n", tmp->n);
+		tmp = tmp->next;
+	}
+	(void)line_number;
 }
 
 
@@ -94,14 +94,14 @@ void monty_pall(stack_t **stack, unsigned int line_number)
  */
 void monty_pint(stack_t **stack, unsigned int line_number)
 {
-    if ((*stack)->next == NULL)
-    {
-        set_op_tok_err(pint_err(line_number));
-        return;
-    }
+	if ((*stack)->next == NULL)
+	{
+		set_op_tok_err(pint_err(line_number));
+		return;
+	}
 
 
-    printf("%d\n", (*stack)->next->n);
+	printf("%d\n", (*stack)->next->n);
 }
 
 
@@ -114,21 +114,21 @@ void monty_pint(stack_t **stack, unsigned int line_number)
  */
 void monty_pop(stack_t **stack, unsigned int line_number)
 {
-    stack_t *next = NULL;
+	stack_t *next = NULL;
 
 
-    if ((*stack)->next == NULL)
-    {
-        set_op_tok_err(pop_err(line_number));
-        return;
-    }
+	if ((*stack)->next == NULL)
+	{
+		set_op_tok_err(pop_err(line_number));
+		return;
+	}
 
 
-    next = (*stack)->next->next;
-    free((*stack)->next);
-    if (next)
-        next->prev = *stack;
-    (*stack)->next = next;
+	next = (*stack)->next->next;
+	free((*stack)->next);
+	if (next)
+		next->prev = *stack;
+	(*stack)->next = next;
 }
 
 
@@ -139,22 +139,22 @@ void monty_pop(stack_t **stack, unsigned int line_number)
  */
 void monty_swap(stack_t **stack, unsigned int line_number)
 {
-    stack_t *tmp;
+	stack_t *tmp;
 
 
-    if ((*stack)->next == NULL || (*stack)->next->next == NULL)
-    {
-        set_op_tok_err(short_stack_err(line_number, "swap"));
-        return;
-    }
+	if ((*stack)->next == NULL || (*stack)->next->next == NULL)
+	{
+		set_op_tok_err(short_stack_err(line_number, "swap"));
+		return;
+	}
 
 
-    tmp = (*stack)->next->next;
-    (*stack)->next->next = tmp->next;
-    (*stack)->next->prev = tmp;
-    if (tmp->next)
-        tmp->next->prev = (*stack)->next;
-    tmp->next = (*stack)->next;
-    tmp->prev = *stack;
-    (*stack)->next = tmp;
+	tmp = (*stack)->next->next;
+	(*stack)->next->next = tmp->next;
+	(*stack)->next->prev = tmp;
+	if (tmp->next)
+		tmp->next->prev = (*stack)->next;
+	tmp->next = (*stack)->next;
+	tmp->prev = *stack;
+	(*stack)->next = tmp;
 }
