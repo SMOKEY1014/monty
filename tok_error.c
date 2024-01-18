@@ -7,8 +7,8 @@
  */
 void set_op_tok_err(int error_code)
 {
-    int toks_len = 0, i = 0;
     char *exit_str = NULL;
+    int toks_len = 0, i = 0;
     char **new_toks = NULL;
 
 
