@@ -144,7 +144,7 @@ int run_monty(FILE *script_fd)
             if (is_empty_line(line, DELIMS))
                 continue;
             free_stack(&stack);
-            return (malloc_error());
+            return (malloc_err());
         }
         else if (op_toks[0][0] == '#') /* comment line */
         {
@@ -155,7 +155,7 @@ int run_monty(FILE *script_fd)
         if (op_func == NULL)
         {
             free_stack(&stack);
-            exit_status = unknown_op_error(op_toks[0], line_number);
+            exit_status = unknown_op_err(op_toks[0], line_number);
             free_tokens();
             break;
         }
@@ -178,7 +178,7 @@ int run_monty(FILE *script_fd)
     if (line && *line == 0)
     {
         free(line);
-        return (malloc_error());
+        return (malloc_err());
     }
 
 
