@@ -2,13 +2,13 @@
 
 
 /**
- * set_op_tok_error - Sets last element of op_toks to be an error code.
- * @error_code: Integer to store as a string in op_toks.
+ * set_op_tok_error - Setting the last element of op_toks to be an error code.
+ * @error_code: Integer to store as a string.
  */
 void set_op_tok_err(int error_code)
 {
     char *exit_str = NULL;
-    int toks_len = 0, i = 0;
+    int toks_len = 0, b= 0;
     char **new_toks = NULL;
 
 
@@ -19,10 +19,10 @@ void set_op_tok_err(int error_code)
         malloc_err();
         return;
     }
-    while (i < toks_len)
+    while (b< toks_len)
     {
-        new_toks[i] = op_toks[i];
-        i++;
+        new_toks[b] = op_toks[b];
+        b++;
     }
     exit_str = get_num(error_code);
     if (!exit_str)
@@ -31,8 +31,8 @@ void set_op_tok_err(int error_code)
         malloc_err();
         return;
     }
-    new_toks[i++] = exit_str;
-    new_toks[i] = NULL;
+    new_toks[b++] = exit_str;
+    new_toks[b] = NULL;
     free(op_toks);
     op_toks = new_toks;
 }

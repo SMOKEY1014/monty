@@ -10,12 +10,12 @@ char *get_next_word(char *str, char *delims);
 
 
 /**
- * strtow - takes a string and seperates its words
+ * strtow - takes a string and split its tokens
  *
- * @str: string to seperate into words
- * @delims: delimitors to use to delimit words
+ * @str: string to split into toks
+ * @delims: delimitors
  *
- * Return: 2D array of pointers to each word
+ * Return: array of pointers to each word
  */
 
 
