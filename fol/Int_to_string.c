@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 
-char *get_int(int num);
+char *get_num(int num);
 unsigned int _abs(int);
 int get_numbase_len(unsigned int num, unsigned int base);
 void fill_numbase_buff(unsigned int num, unsigned int base,
@@ -15,7 +15,7 @@ void fill_numbase_buff(unsigned int num, unsigned int base,
  *
  * Return: character pointer to newly created string. NULL if malloc fails.
  */
-char *get_int(int num)
+char *get_num(int num)
 {
     unsigned int temp;
     int length = 0;
