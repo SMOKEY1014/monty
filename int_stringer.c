@@ -10,7 +10,7 @@ void fill_numbase_buff(unsigned int num, unsigned int base,
 
 
 /**
- * get_int - gets a character pointer to new string containing int
+ * get_num - gets a character pointer to new string containing int
  * @num: number to convert to string
  *
  * Return: character pointer to newly created string. NULL if malloc fails.

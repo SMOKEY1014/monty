@@ -2,7 +2,7 @@
 
 
 /**
- * set_op_tok_error - Setting the last element of op_toks to be an error code.
+ * set_op_tok_err - Setting the last element of op_toks to be an error code.
  * @error_code: Integer to store as a string.
  */
 void set_op_tok_err(int error_code)
